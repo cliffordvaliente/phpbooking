@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once('db.inc.php');
+require_once('db.php');
 
 // Check if the user is logged in, redirect to login page if not.
 if (!isset($_SESSION['user_id'])) {
@@ -66,6 +66,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Lagre preferanser">
     </form>
 
-    <p><a href="dashboard.inc.php">Tilbake til dashbord</a></p>
+    <p><a href="dashboards/dstudent.php">Tilbake til dashbord</a></p>
 </body>
 </html>

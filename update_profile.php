@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
  }
-require_once('db.inc.php');
+require_once('db.php');
 
 // Check if the user is logged in, redirect to login page if not.
 //session_start();
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Update user information in the database
         $stmt = $pdo->prepare("UPDATE users SET firstname=?, lastname=?, cell=?, email=? WHERE user_id=?");
         $stmt->execute([$firstname, $lastname, $cellphone, $email, $user_id]);
-        header("Location: dashboard.inc.php"); // Sends user back when update is submitted
+        header("Location: dashboards/dstudent.php"); // Sends user back when update is submitted
         exit();
         // Fetch updated user data
         $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = ?");
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="submit" value="Oppdater profil">
 
-        <p><a href="dashboard.inc.php">Tilbake til dashbord</a></p>
+        <p><a href="dashboards/dstudent.php">Tilbake til dashbord</a></p>
     </form>
 </body>
 </html>

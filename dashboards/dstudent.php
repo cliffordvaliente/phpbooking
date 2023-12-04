@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once('db.php');
+require_once('../../phpbooking/db.php');
 
 /* Debug statements
 echo '<pre>';
@@ -47,11 +47,11 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     <ul>
         <li>Navn: <?php echo $user['firstname'] . ' ' . $user['lastname']; ?></li>
         <li>Email: <?php echo $user['email']; ?></li>
-        <li><a href="update_profile.php">Endre profilinformasjon</a></li>
-        <li><a href="set_preferences.php">Sett foretrukken Lærerassistent</a></li>
+        <li><a href="../../phpbooking/update_profile.php">Endre profilinformasjon</a></li>
+        <li><a href="../../phpbooking/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
        
     </ul>
 
-    <p><a href="logout.inc.php">Logg ut</a></p>
+    <p><a href="../../phpbooking/logout.inc.php">Logg ut</a></p>
 </body>
 </html>
