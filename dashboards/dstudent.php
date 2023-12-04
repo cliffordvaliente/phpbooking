@@ -1,5 +1,5 @@
 <?php
-include_once "functions.php";
+include_once "files/functions.php";
 hidestatus();
 
 require_once('databases/db.php');
@@ -48,12 +48,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <li>Email:
             <?php echo $user['email']; ?>
         </li>
-        <li><a href="../../phpbooking/update_profile.php">Endre profilinformasjon</a></li>
-        <li><a href="../../phpbooking/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
+        <li><a href="files/update_profile.php">Endre profilinformasjon</a></li>
+        <li><a href="files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
 
     </ul>
 
-    <p><a href="../../phpbooking/logout.inc.php">Logg ut</a></p>
+    <p><a href="files/logout.php">Logg ut</a></p>
 </body>
 
 </html>

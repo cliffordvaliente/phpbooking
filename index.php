@@ -15,8 +15,9 @@
 
 <?php
 //! INCLUDE PHP FILES HERE 
-include "functions.php";
+include_once "files/functions.php";
 hidestatus();
+
 
 // 
 if (isset($_SESSION['user_id'])) {
@@ -24,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
    include('dashboards/dstudent.php');
 } else {
    // User is not logged in, include login content
-   include('login.php');
+   include('files/login.php');
 }
 
 if (isset($_GET['logout'])) {
