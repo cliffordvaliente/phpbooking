@@ -2,7 +2,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
  }
-require_once('db.php');
+require_once('../databases/db.php');
 
 // Check if the user is logged in, redirect to login page if not.
 //session_start();
@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="submit" value="Oppdater profil">
 
-        <p><a href="dashboards/dstudent.php">Tilbake til dashbord</a></p>
+        <p><a href="../dashboards/dstudent.php">Tilbake til dashbord</a></p>
     </form>
 </body>
 </html>

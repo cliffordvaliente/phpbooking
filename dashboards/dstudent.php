@@ -1,13 +1,13 @@
 <?php
-include_once "files/functions.php";
+include_once "../files/functions.php";
 hidestatus();
 
-require_once('databases/db.php');
+require_once('../databases/db.php');
 
 
 // Check if the user is logged in, redirect to login page if not.
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -48,12 +48,12 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         <li>Email:
             <?php echo $user['email']; ?>
         </li>
-        <li><a href="files/update_profile.php">Endre profilinformasjon</a></li>
-        <li><a href="files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
+        <li><a href="../files/update_profile.php">Endre profilinformasjon</a></li>
+        <li><a href="../files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
 
     </ul>
 
-    <p><a href="files/logout.php">Logg ut</a></p>
+    <p><a href="../files/logout.php">Logg ut</a></p>
 </body>
 
 </html>

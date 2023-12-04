@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once('db.php');
+require_once('../databases/db.php');
 
 // Check if the user is logged in, redirect to login page if not.
 if (!isset($_SESSION['user_id'])) {
