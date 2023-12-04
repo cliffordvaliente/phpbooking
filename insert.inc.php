@@ -1,5 +1,5 @@
 <?php
-require_once('db.inc.php');
+require_once('db.php');
 
 $role = 'student'; // Set default role as student, TAs have to be manually modified to 'TA' in the database.
 

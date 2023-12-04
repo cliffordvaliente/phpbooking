@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once('db.inc.php');
+require_once('db.php');
 
 /* Debug statements
 echo '<pre>';

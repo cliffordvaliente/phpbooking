@@ -9,7 +9,7 @@ require_once('db.php');
 
 if (isset($_SESSION['user_id'])) {
     // User is already logged in, redirect to dashboard
-    header("Location: dashboard.inc.php");
+    header("Location: dashboards/dstudent.php");
     exit();
 }
 
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['role'] = $user['role'];
             //header('Location: dashboard.inc.php');
-            include('dashboard.inc.php');
+            include('dashboards/dstudent.php');
             exit();
         } else {
             $errormessage = "Feil brukernavn eller passord."; // Error message for wrong email or password
