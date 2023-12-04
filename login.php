@@ -1,7 +1,7 @@
 <?php
 
 //! INCLUDE PHP FILES HERE 
-include 'functions.php';
+include_once 'functions.php';
 hidestatus();
 
 //! DB STUFF 
