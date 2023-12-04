@@ -9,6 +9,6 @@ session_unset();
 session_destroy();
 
 // Redirect to the login page after logout
-header("Location: index.php?logout=1");
+header("Location: ../index.php?logout=1");
 exit();
 ?>
