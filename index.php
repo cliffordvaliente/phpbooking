@@ -27,7 +27,7 @@ if (isset($_SESSION['user_id'])) {
     include('dashboards/dstudent.php');
 } else {
     // User is not logged in, include login content
-    include('login.inc.php');
+    include('login.php');
 }
 
 if (isset($_GET['logout'])) {
