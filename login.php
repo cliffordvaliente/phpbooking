@@ -5,7 +5,7 @@ include_once 'functions.php';
 hidestatus();
 
 //! DB STUFF 
-require_once('db.php');
+require_once('databases/db.php');
 
 //! IF USER LOGGED IN -> REDIRECT TO DASHBOARD
 if (isset($_SESSION['user_id'])) {
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <h1>Bookingapplikasjon </h1>
+    <h1>BOOKING APPLIKASJON</h1>
     <h2>Logg inn</h2>
     <form method="post" action="index.php">
         <label for="email">E-post:</label>

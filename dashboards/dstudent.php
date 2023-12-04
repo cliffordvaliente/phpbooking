@@ -1,15 +1,10 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+include_once "functions.php";
+hidestatus();
 
-require_once(__DIR__ . '/../db.php');
+require_once('databases/db.php');
 
-/* Debug statements
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
-*/
+
 // Check if the user is logged in, redirect to login page if not.
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
@@ -41,17 +36,24 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <h2>Velkommen til Bookingapplikasjonen, <?php echo $user['firstname']; ?>!</h2>
+    <h2>Velkommen til Bookingapplikasjonen,
+        <?php echo $user['firstname']; ?>!
+    </h2>
 
     <p>Brukerinformasjon:</p>
     <ul>
-        <li>Navn: <?php echo $user['firstname'] . ' ' . $user['lastname']; ?></li>
-        <li>Email: <?php echo $user['email']; ?></li>
+        <li>Navn:
+            <?php echo $user['firstname'] . ' ' . $user['lastname']; ?>
+        </li>
+        <li>Email:
+            <?php echo $user['email']; ?>
+        </li>
         <li><a href="../../phpbooking/update_profile.php">Endre profilinformasjon</a></li>
         <li><a href="../../phpbooking/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
-       
+
     </ul>
 
     <p><a href="../../phpbooking/logout.inc.php">Logg ut</a></p>
 </body>
+
 </html>

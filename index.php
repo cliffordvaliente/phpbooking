@@ -20,11 +20,11 @@ hidestatus();
 
 // 
 if (isset($_SESSION['user_id'])) {
-    // User is logged in, include dashboard content
-    include('dashboards/dstudent.php');
+   // User is logged in, include dashboard content
+   include('dashboards/dstudent.php');
 } else {
-    // User is not logged in, include login content
-    include('login.php');
+   // User is not logged in, include login content
+   include('login.php');
 }
 
 if (isset($_GET['logout'])) {
