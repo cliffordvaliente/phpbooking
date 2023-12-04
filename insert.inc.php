@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Get the user_id of the inserted user
             $user_id = $pdo->lastInsertId();
 
-            // Insert into 'courseid' table, backticks to identify correct columns in 'courseid' table
+            // Insert into 'courseid' table, backticks to identify correct columns in 'courseid' table ### THIS TABLE DOESNT EXIST ##########################################
             $courseSql = "INSERT INTO courseid 
             (user_id, `IS-116`, `IS-115`, `ORG-128`)
             VALUES
