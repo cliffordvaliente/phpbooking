@@ -24,8 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 if (isset($_SESSION['user_id'])) {
     // User is logged in, include dashboard content
-    include('dashboard.inc.php');
-    //include('bookingtable.inc.php');
+    include('dashboards/dstudent.php');
 } else {
     // User is not logged in, include login content
     include('login.inc.php');
