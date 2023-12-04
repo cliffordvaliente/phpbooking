@@ -2,7 +2,7 @@
 $host = 'localhost'; // or 'localhost'
 $db = 'phpbooking';
 $user = 'root';
-$pass = '';
+$pass = 'root';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -17,4 +17,7 @@ try {
 } catch (\PDOException $e) {
    throw new \PDOException($e->getMessage(), (int) $e->getCode());
 }
+
+
+
 ?>

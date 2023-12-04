@@ -15,26 +15,22 @@
 
 <?php
 // Include (require) files here, cookies config etc.
-
-// Include the appropriate content based on the login status
-session_start();
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
- }
+include "functions.php";
+hidestatus();
 
 if (isset($_SESSION['user_id'])) {
-    // User is logged in, include dashboard content
-    include('dashboards/dstudent.php');
+   // User is logged in, include dashboard content
+   include('dashboards/dstudent.php');
 } else {
-    // User is not logged in, include login content
-    include('login.php');
+   // User is not logged in, include login content
+   include('login.php');
 }
 
 if (isset($_GET['logout'])) {
-    echo 'Du er nå logget ut.';
+   echo 'Du er nå logget ut.';
 }
 
 if (isset($_GET['registered'])) {
-    echo 'Profilen din er opprettet. Vennligst logg inn.';
+   echo 'Profilen din er opprettet. Vennligst logg inn.';
 }
 ?>
