@@ -18,8 +18,8 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Fetch a list of TAs from the database
-$ta_stmt = $pdo->prepare("SELECT user_id, firstname, lastname FROM users WHERE role = 'TA'");
+// Fetch a list of Teaching Assistants from the database
+$ta_stmt = $pdo->prepare("SELECT user_id, firstname, lastname FROM users WHERE role = 'Assistant'");
 $ta_stmt->execute();
 $ta_list = $ta_stmt->fetchAll(PDO::FETCH_ASSOC);
 
