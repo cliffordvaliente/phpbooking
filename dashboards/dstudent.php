@@ -1,8 +1,8 @@
 <?php
-include_once "../files/functions.php";
+include_once "./files/functions.php";
 hidestatus();
 
-require_once('../databases/db.php');
+require_once('./databases/db.php');
 
 
 // Check if the user is logged in, redirect to login page if not.
