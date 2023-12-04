@@ -1,10 +1,13 @@
 <?php
-$host = 'localhost'; // or 'localhost'
+$host = 'localhost';
+//! NAME OF THE DATABASE
 $db = 'phpbooking';
+//! CREDENTIALS SQL USER
 $user = 'root';
 $pass = 'root';
 $charset = 'utf8mb4';
 
+//! PDO CONNECTION
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

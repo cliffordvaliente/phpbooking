@@ -14,10 +14,11 @@
 </html>
 
 <?php
-// Include (require) files here, cookies config etc.
+//! INCLUDE PHP FILES HERE 
 include "functions.php";
 hidestatus();
 
+// 
 if (isset($_SESSION['user_id'])) {
     // User is logged in, include dashboard content
     include('dashboards/dstudent.php');
