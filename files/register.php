@@ -9,7 +9,7 @@ require_once('../databases/db.php');
 $errormessage = array();
 
 // Below is the user registration. It checks against what is wrong and not against what is correct, by using $error.
- if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $full_name = trim($_POST["full_name"]);
     $email = trim($_POST["email"]);
@@ -48,43 +48,72 @@ $errormessage = array();
         echo "Feil oppstod, vennligst rett på følgende:<br>";
         foreach ($error as $errormessage) {
             echo "-$errormessage<br>";
-        };
+        }
+        ;
     }
- }
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheet/style.css">
     <title>Registrer en bruker</title>
 </head>
+
 <body>
-    <!-- HTML-form for user registration -->
-    <h2>Brukerregistrering</h2>
-    <form method="post" action="" accept-charset="UTF-8">
-        <label for="full_name">Fullt navn:</label>
-        <input type="text" name="full_name" value="<?php echo isset($full_name) ? htmlspecialchars($full_name) : ''; ?>"><br>
 
-        <label for="email">Email:</label>
-        <input type="text" name="email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>"><br><br>
-    
-        <label>Fagkode:</label><br>
-        <input type="checkbox" name="courses[]" value="2"> IS-115<br>
-        <input type="checkbox" name="courses[]" value="1"> IS-116<br>
+    <div class="body1">
+        <div class="blur">
+            <div class="loginbox">
+                <h2>Registrer deg</h2>
+                <div id="boxcenter">
+                    <form method="post" action="" accept-charset="UTF-8">
+                        <div class="divinputs">
 
-        <p>Passordet må være minst 8 tegn langt, inneholde <b>minst</b> én stor bokstav og ett tall. Vi anbefaler at du har noen små bokstaver også.</p>
+                            <label for="full_name">fullt navn</label>
+                            <input type="text" name="full_name"
+                                value="<?php echo isset($full_name) ? htmlspecialchars($full_name) : ''; ?>"><br>
+                        </div>
+                        <div class="divinputs">
 
-        <label for="password">Passord:</label>
-        <input type="password" name="password"><br>
+                            <label for="email">e-post</label>
+                            <input type="text" name="email"
+                                value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>"><br><br>
+                        </div>
+                        <div class="divinputs">
 
-        <label for="password_repeat">Gjenta Passord:</label>
-        <input type="password" name="password_repeat"><br><br>
+                            <label>fagkode</label><br>
+                            <input type="checkbox" name="courses[]" value="2"> IS-115<br>
+                            <input type="checkbox" name="courses[]" value="1"> IS-116<br>
+                        </div>
+                        <div class="divinputs">
 
-        <input type="submit" value="Registrer">
-    </form>
+
+
+                            <label for="password">Passord</label>
+                            <input type="password" name="password"><br>
+                        </div>
+                        <div class="divinputs">
+                            <label for="password_repeat">Gjenta Passord</label>
+                            <input type="password" name="password_repeat"><br><br>
+
+                        </div>
+                        <div class="divinputs">
+                            <input id="button" type="submit" value="Registrer">
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>

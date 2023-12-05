@@ -51,6 +51,7 @@ CREATE TABLE
     sender_id INT NOT NULL,
     recipient_id INT NOT NULL,
     message_text TEXT NOT NULL,
+    mread BOOLEAN,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sender_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (recipient_id) REFERENCES Users(user_id) ON DELETE CASCADE
