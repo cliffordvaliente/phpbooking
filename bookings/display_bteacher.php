@@ -1,5 +1,5 @@
 <?php
-require_once('../databases/db.php');
+require_once('./databases/db.php');
 
 // Fetch TA bookings
 $assistant_id = $_SESSION['user_id'];

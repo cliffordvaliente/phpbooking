@@ -77,7 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
 }
-include('display_bteacher.php');
 ?>
 
 <!DOCTYPE html>
