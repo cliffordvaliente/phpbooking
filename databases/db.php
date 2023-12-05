@@ -4,7 +4,7 @@ $host = 'localhost';
 $db = 'phpbooking';
 //! CREDENTIALS SQL USER
 $user = 'root';
-$pass = 'rootgit ';
+$pass = '';
 $charset = 'utf8mb4';
 
 //! PDO CONNECTION
