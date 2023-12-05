@@ -66,3 +66,21 @@ CREATE TABLE
     FOREIGN KEY (student_id) REFERENCES Users(user_id) ON DELETE CASCADE,
     FOREIGN KEY (course_id) REFERENCES Courses(course_id) ON DELETE CASCADE
   );
+
+
+CREATE TABLE
+  Teachers (
+    teacher_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    additional_info TEXT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+  );
+
+
+CREATE TABLE
+  Students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    additional_info TEXT,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
+  );
