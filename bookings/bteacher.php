@@ -49,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($error)) {
         include('insert_booking.php');
-        header("Location: set_timeslots.php");
         exit();
     } else {
         echo "Feil oppstod, vennligst rett på følgende:<br>";
