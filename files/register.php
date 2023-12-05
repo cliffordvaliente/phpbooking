@@ -99,11 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <div>
                                     <div id="divinputs3">
                                         <p> IS-115</p>
-                                        <input type="checkbox" id="checkbox" name="courses[]" value="2"> <br>
+                                        <input type="checkbox" id="checkbox" name="courses[]" value="1"> <br>
                                     </div>
                                     <div id="divinputs3">
                                         <p> IS-116</p>
-                                        <input type="checkbox" id="checkbox" name="courses[]" value="1"> <br>
+                                        <input type="checkbox" id="checkbox" name="courses[]" value="2"> <br>
                                     </div>
                                 </div>
                             </div>

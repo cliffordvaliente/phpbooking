@@ -1,6 +1,6 @@
 <?php
 require_once('../databases/db.php');
-
+/* This code lets students cancel their booking, and frees the slot up for someone else to book. */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session_id = $_POST['session_id'];
 
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$session_id]);
 
         $pdo->commit();
-        header("Location: bstudent.php");
+        header("Location: ../index.php");
         exit();
     } catch (Exception $e) {
         $pdo->rollBack();

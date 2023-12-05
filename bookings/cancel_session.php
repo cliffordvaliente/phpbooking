@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$session_id]);
 
         $pdo->commit();
-        header("Location: bteacher.php");
+        header("Location: ../index.php");
         exit();
     } catch (Exception $e) {
         $pdo->rollBack();

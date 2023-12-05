@@ -33,7 +33,7 @@ $studentBookings = $bookingsStmt->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $booking['BookingStatus']; ?></td>
             <td><?php echo $booking['bookingdate']; ?></td>
             <td>
-                <form action="cancel_booking.php" method="post">
+                <form action="./bookings/cancel_booking.php" method="post">
                     <input type="hidden" name="session_id" value="<?php echo $booking['session_id']; ?>">
                     <input type="submit" value="Cancel Booking">
                 </form>
