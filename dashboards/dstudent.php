@@ -15,8 +15,6 @@ $user_id = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// If not a TA, continue rendering HTML content
 ?>
 
 <!DOCTYPE html>
