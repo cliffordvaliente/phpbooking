@@ -6,9 +6,15 @@ hidestatus();
 // Require database connection
 require_once('../databases/db.php');
 
+/* REGISTER.PHP
+ * Below is the user registration. It checks against what is wrong and not against what is correct, by using $error.
+ * The text next to the error variables explains why errors occur.
+ * In the html form, there is som php code which 'remembers' user input, namely name and email in case the form is
+ * submitted while wrong or incomplete.
+*/
+
 $errormessage = array();
 
-// Below is the user registration. It checks against what is wrong and not against what is correct, by using $error.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $full_name = trim($_POST["full_name"]);
@@ -39,11 +45,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     if (empty($error)) {
         include('../files/insert.php');
-        header("Location: ../register_redirect.php"); // Redundant line, insert.php redirects
+        header("Location: ../register_redirect.php"); // Redundant line, insert.php redirects. Keep in just in case.
         exit();
     }
 
-    // Here, each error is stored and then displayed on screen as a separate line.
+    // Here, each error is stored and then displayed on the same page as separate lines.
     else {
         echo "Feil oppstod, vennligst rett på følgende:<br>";
         foreach ($error as $errormessage) {

@@ -5,6 +5,11 @@ redirectForbidden();
 
 require_once __DIR__ . '/../databases/db.php';
 
+/* UPDATE_PROFILE.PHP
+ * This form works similarly to register.php. Here, already saved information is fetched
+ * from the database and populated in the form fields. Users can change their information
+ * and submit, at which point the database is updated.
+*/
 $user_id = $_SESSION['user_id'];
 
 // Fetch user data from the database based on the user_id stored in the session.

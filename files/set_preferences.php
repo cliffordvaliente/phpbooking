@@ -5,6 +5,12 @@ redirectForbidden();
 
 require_once __DIR__ . '/../databases/db.php';
 
+/* SET_PREFERENCES.PHP
+ * This code lets students set their preferred teaching assistant.
+ * It fetches TAs in a drop-down list. Users choose their preferred TA and submit.
+ * The database is updated in the 'users' table with the TAs chosen name.
+*/
+
 $user_id = $_SESSION['user_id'];
 
 // Fetch user data from the database based on the user_id stored in the session.

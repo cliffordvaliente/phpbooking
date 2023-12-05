@@ -49,7 +49,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <div class="collapse navbar-collapse justify-content-center" id="navbarColor01">
                 <ul class="navbar-nav me-auto ">
                     <li class="nav-item">
-                        <a href="./files/dstudent.php">Dashboard</a>
+                        <a href="./index.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a href="../bookings/bstudent.php">Bookings</a>
@@ -57,9 +57,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                     <li class="nav-item">
                         <a href="./files/logout.php">Logg ut</a>
                     </li>
-
                 </ul>
-
             </div>
         </div>
     </nav>
