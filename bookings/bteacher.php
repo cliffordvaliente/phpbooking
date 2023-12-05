@@ -1,18 +1,34 @@
 <?php
+
+//! SESSION START AND HIDE STATUS
 include_once '../files/functions.php';
 hidestatus();
 
-// Require database connection
+//! DB STUFF 
 require_once('../databases/db.php');
 
-// Check if the user is logged in and a teaching assistant, redirect to login page if not.
+//! CHECK IF USER LOGGED IN AS ASSISTANT ELSE REDIRECT TO LOGIN
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Assistant') {
-header("Location: ../index.php");
-exit();
+    header("Location: ../index.php");
+    exit();
 }
-    // Booking form handling
+
+//! FETCH THE COURSES FOR USER ASSISTANT.
+
+$assistant_id = $_SESSION['user_id'];
+$courseQuery = "SELECT c.course_id, c.course_name FROM courses c
+                INNER JOIN student_courses sc ON c.course_id = sc.course_id
+                WHERE sc.student_id = ?";
+$courseStmt = $pdo->prepare($courseQuery);
+$courseStmt->execute([$assistant_id]);
+$availableCourses = $courseStmt->fetchAll(PDO::FETCH_ASSOC);
+
+//! HERE IS THE PARAMETERS FOR FORM
+
 $errormessage = array();
 
+$godkjent = "";
+//! REQUEST METHOD POST FROM THE FORM 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session_date = $_POST['session_date'];
     $start_time_input = $_POST['start_time'];
@@ -22,15 +38,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $is_12_hour_format = strpos($start_time_input, 'AM') !== false || strpos($start_time_input, 'PM') !== false;
 
-    // Convert start_time to 24-hour format for AM/PM users
+    //! CONVERT THE 12H FORMAT TO 24H
     if ($is_12_hour_format) {
         $start_time_24h = date('H:i', strtotime($start_time_input));
     } else {
-        // If it's already in 24-hour format, no conversion needed
+        //! IF ALREADY 24H FORMAT IGNORE CODE ABOVE
         $start_time_24h = $start_time_input;
     }
 
-    // Additional validation
+    //! VALIDATION THAT NO FIELDS ARE EMPTY
     if (empty($session_date)) {
         $error[] = "Vennligst sett en dato";
     }
@@ -47,35 +63,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error[] = "Vennligst velg et kurs";
     }
 
+    //! IF NO ERROR FROM THE FIELDS RUN THE FILE INSERT BOOKING
     if (empty($error)) {
         include('insert_booking.php');
-        exit();
+        $godkjent = "Din veiledingsøkt har blitt registrert";
+
     } else {
         echo "Feil oppstod, vennligst rett på følgende:<br>";
         foreach ($error as $errormessage) {
+            //! RIGHT ERROR MESSAGE FROM SPECIFIC VALIDATION ABOVE
             echo "-$errormessage<br>";
         }
     }
+
 }
 
-// Fetch the courses associated with the logged-in TA
-$assistant_id = $_SESSION['user_id'];
-$courseQuery = "SELECT c.course_id, c.course_name FROM courses c
-                INNER JOIN student_courses sc ON c.course_id = sc.course_id
-                WHERE sc.student_id = ?";
-$courseStmt = $pdo->prepare($courseQuery);
-$courseStmt->execute([$assistant_id]);
-$availableCourses = $courseStmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Sett opp veiledningsøkter</title>
+    <title>Bookings</title>
+    <link rel="stylesheet" href="../stylesheet/bteacher.css">
+
 </head>
+
 <body>
+    <p>
+        <?php echo $godkjent; ?>
+    </p>
     <h2>Sett opp veiledningsøkter</h2>
+
+    <!-- HERE IS THE FORM POST ---------------------------------->
     <form action="" method="post" novalidate>
         <label>Dato:</label>
         <input type="date" name="session_date" required><br>
@@ -92,12 +113,20 @@ $availableCourses = $courseStmt->fetchAll(PDO::FETCH_ASSOC);
         <label>Velg kurs:</label>
         <select name="course_id" required>
             <?php foreach ($availableCourses as $course): ?>
-                <option value="<?php echo $course['course_id']; ?>"><?php echo $course['course_name']; ?></option>
+                <option value="<?php echo $course['course_id']; ?>">
+                    <?php echo $course['course_name']; ?>
+                </option>
             <?php endforeach; ?>
         </select><br>
 
-        <input type="submit" value="Sett opp en veiledningstime">
+        <input type="submit" value="Sett opp en veiledningstime"> <button id="xx"><a href="../index.php">Tilbake til
+                dashbord</a></button>
+
     </form>
-    <p><a href="../index.php">Tilbake til dashbord</a></p>
+
+    <!-- HERE IS THE END FOR FORM  ---------------------------------->
+
+
 </body>
+
 </html>

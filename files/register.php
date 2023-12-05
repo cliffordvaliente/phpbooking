@@ -11,7 +11,7 @@ require_once('../databases/db.php');
  * The text next to the error variables explains why errors occur.
  * In the html form, there is som php code which 'remembers' user input, namely name and email in case the form is
  * submitted while wrong or incomplete.
-*/
+ */
 
 $errormessage = array();
 
@@ -122,7 +122,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <input id="button" type="submit" value="Registrer">
                             </div>
                         </form>
+
+
                     </div>
+                    <a href="../index.php">Har du allerede opprettet konto trykk her</a>
                 </div>
 
             </div>

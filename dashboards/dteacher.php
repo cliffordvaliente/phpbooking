@@ -24,6 +24,9 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./stylesheet/dteacher.css">
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- AJAX STUFF HERE --------------------------------------------------------->
     <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
@@ -38,38 +41,31 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <!-- NAVIGATION BAR ------------------------------------------------------------------>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div class="container-fluid">
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarColor01">
-                <ul class="navbar-nav me-auto ">
-                    <li class="nav-item">
-                        <a href="./index.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./bookings/bteacher.php">Bookings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./files/logout.php">Logg ut</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <nav>
+
+        <ul>
+            <li>
+                <a href="./index.php">Dashboard</a>
+            </li>
+            <li>
+                <a href="./bookings/bteacher.php">Bookings</a>
+            </li>
+            <li>
+                <a href="./files/logout.php">Logg ut</a>
+            </li>
+        </ul>
+
     </nav>
 
-    <!-- NAVIGATION BAR END ----------------------------------------------------------------->
 
-    <div>
+    <div id="xx">
 
-        <h2>Velkommen til hjelpelærersiden av Bookingapplikasjonen,
+        <h2>Velkommen LA.
             <?php echo $user['full_name']; ?>!
+            Her er ditt Booking Dashboard
         </h2>
-        <p>Ditt Profil informasjon</p>
+        <h3>Ditt Profil informasjon</h3>
         <ul>
             <li>Ditt navn:
                 <?php echo $user['full_name']; ?>
@@ -77,7 +73,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <li>E-post:
                 <?php echo $user['email']; ?>
             </li>
-            <li><a href="./files/update_profile.php">Trykk her for å endre profilinformasjon</a></li>
+            <li><a href="./files/update_profile.php">Endre ditt profil her</a></li>
         </ul>
 
     </div>

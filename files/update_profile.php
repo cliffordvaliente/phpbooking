@@ -9,7 +9,7 @@ require_once __DIR__ . '/../databases/db.php';
  * This form works similarly to register.php. Here, already saved information is fetched
  * from the database and populated in the form fields. Users can change their information
  * and submit, at which point the database is updated.
-*/
+ */
 $user_id = $_SESSION['user_id'];
 
 // Fetch user data from the database based on the user_id stored in the session.
@@ -71,17 +71,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oppdater profil</title>
 </head>
+
 <body>
     <!-- HTML-form for updating user profile -->
     <h2>Oppdater profil</h2>
     <form method="post" action="" accept-charset="UTF-8">
         <label for="full_name">Fullt navn:</label>
-        <input type="text" name="full_name" value="<?php echo isset($user['full_name']) ? $user['full_name'] : ''; ?>"><br>
+        <input type="text" name="full_name"
+            value="<?php echo isset($user['full_name']) ? $user['full_name'] : ''; ?>"><br>
 
         <label for="email">Email:</label>
         <input type="text" name="email" value="<?php echo isset($user['email']) ? $user['email'] : ''; ?>"><br>
@@ -97,4 +100,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p><a href="../index.php">Tilbake til dashbord</a></p>
     </form>
 </body>
+
 </html>

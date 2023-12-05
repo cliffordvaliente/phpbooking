@@ -1,0 +1,89 @@
+/* Reset some default styles */
+html,
+body,
+div,
+h2,
+h3,
+ul,
+li,
+a,
+nav {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply a background color to the body */
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the navigation bar */
+nav {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style-type: none;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Style the main content */
+
+h2 {
+  color: #007bff;
+}
+
+h3 {
+  color: #333;
+}
+
+/* Style the profile information */
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  margin-bottom: 10px;
+}
+
+/* Style the link to update the profile */
+ul li a {
+  text-decoration: solid;
+  color: black;
+  font-weight: bold;
+}
+
+ul li a:hover {
+  text-decoration: none;
+}
+
+/* Style the calendar container
+#calendar {
+}
+ */
+#xx {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h2,
+h3,
+ul {
+  padding: 1rem 0;
+}
