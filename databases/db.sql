@@ -14,7 +14,7 @@ CREATE TABLE
     full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('Teacher', 'Student', 'Assistant') NOT NULL,
+    role ENUM('Student', 'Assistant') NOT NULL,
     experience TEXT,
     specialization VARCHAR(255),
     availability TEXT
@@ -32,11 +32,11 @@ CREATE TABLE
 CREATE TABLE
   Guidance_Sessions (
     session_id INT AUTO_INCREMENT PRIMARY KEY,
-    teacher_id INT,
+    assistant_id INT,
     course_id INT,
     length INT,
     session_theme VARCHAR(255),
-    FOREIGN KEY (teacher_id) REFERENCES Users(user_id) ON DELETE
+    FOREIGN KEY (assistant_id) REFERENCES Users(user_id) ON DELETE
     SET
       NULL,
       FOREIGN KEY (course_id) REFERENCES Courses(course_id) ON DELETE
@@ -69,8 +69,8 @@ CREATE TABLE
 
 
 CREATE TABLE
-  Teachers (
-    teacher_id INT AUTO_INCREMENT PRIMARY KEY,
+  Assistant (
+    assistant_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     additional_info TEXT,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
