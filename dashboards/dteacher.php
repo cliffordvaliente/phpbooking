@@ -4,8 +4,8 @@ hidestatus();
 
 require_once __DIR__ . '/../databases/db.php';
 
-// Check if the user is logged in, redirect to login page if not.
-if (!isset($_SESSION['user_id'])) {
+// Check if the user is logged in and a TA, redirect to login page if not.
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Assistant') {
     header("Location: ../index.php");
     exit();
 }
