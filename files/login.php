@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </form>
                 <?php
                 if (!empty($errormessage)) {
-                    echo "<script>alert($errormessage)</script>";
+                    echo $errormessage;
                 }
                 ?>
                 <p>Ikke registrert ennå? <a href="./files/register.php">Registrer deg her</a></p>
