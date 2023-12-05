@@ -33,7 +33,6 @@ $sessionStmt = $pdo->prepare($sessionQuery);
 $sessionStmt->execute([$course_id]);
 $availableSessions = $sessionStmt->fetchAll(PDO::FETCH_ASSOC);
 
-include('display_bstudent.php');
 ?>
 
 <!DOCTYPE html>

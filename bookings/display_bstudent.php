@@ -1,5 +1,5 @@
 <?php
-require_once('../databases/db.php');
+require_once('./databases/db.php');
 
 // Fetch student bookings
 $student_id = $_SESSION['user_id'];

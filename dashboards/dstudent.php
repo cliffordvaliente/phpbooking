@@ -23,14 +23,6 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- AJAX STUFF HERE --------------------------------------------------------->
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css' rel='stylesheet' />
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.print.min.css' rel='stylesheet'
-        media='print' />
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
-    <!-- AJAX STUFF END --------------------------------------------------------->
     <title>Dashboard Student</title>
 </head>
 
@@ -77,13 +69,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
             <li><a href="./files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
         </ul>
 
+    <div><?php include('./bookings/display_bstudent.php'); ?></div>
     </div>
-
-    <div id='calendar student'></div>
-
-    <script src="./files/script.js"></script> <!-- Custom JavaScript -->
-
-
 </body>
-
 </html>
