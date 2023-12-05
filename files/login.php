@@ -9,7 +9,7 @@ require_once('./databases/db.php');
 
 //! IF USER LOGGED IN -> REDIRECT TO DASHBOARD
 if (isset($_SESSION['user_id'])) {
-    header("Location: /dashboards/dstudent.php");
+    header("Location: ../dashboards/dstudent.php");
     exit();
 }
 
@@ -36,8 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //! SET SESSION VARIABLES WHEN SUCCESSFUL AND REDIRECT TO DASHBOARD
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['role'] = $user['role'];
-
-            include('./index.php');
+            include('index.php');
             exit();
         } else {
             //! GET ERROR MESSAGE IF WRONG CREDENTIALS
@@ -58,38 +57,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Ubuntu+Mono&display=swap');
+    </style>
     <title>Logg inn</title>
 </head>
 
 <body>
     <div class="body1">
-        <div class="loginbox">
-            <h1>Student Booking App</h1>
-            <h2>Logg inn</h2>
-            <form method="post" action="">
-                <label for="email">E-post:</label>
-                <input type="email" name="email" required>
+        <div class="blur">
+            <div class="loginbox">
+                <h1>Student Booking App</h1>
+                <h3>logg inn</h3>
+                <div id="boxcenter">
+                    <form method="post" action="" class="formlogin">
 
-                <br>
+                        <div class="divinputs">
+                            <label for="email">e-post</label>
+                            <input type="email" name="email" required>
+                        </div>
+                        <br>
+                </div>
 
-                <label for="password">Passord:</label>
-                <input type="password" name="password" required>
+                <div class="divinputs">
+                    <span class="label">passord</span>
+                    <input type="password" name="password" class="password" required>
+                    <br>
+                </div>
+                <div class="divinputs">
+                    <input id="button" type="submit" value="Logg inn">
 
-                <br>
+                </div>
+                </form>
+                <?php
+                if (!empty($errormessage)) {
+                    echo "<script>alert($errormessage)</script>";
+                }
+                ?>
+                <p>Ikke registrert ennå? <a href="./files/register.php">Registrer deg her</a></p>
+            </div>
 
-                <input type="submit" value="Logg inn">
-            </form>
 
-            <?php
-            if (!empty($errormessage)) {
-                echo "<p>$errormessage</p>";
-            }
-            ?>
-            <p>Ikke registrert ennå? <a href="./files/register.php">Registrer deg her</a></p>
+
         </div>
+    </div>
     </div>
 </body>
 
