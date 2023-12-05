@@ -67,37 +67,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="body1">
         <div class="blur">
             <div class="loginbox">
-                <h1>Student Booking App</h1>
-                <h3>logg inn</h3>
-                <div id="boxcenter">
-                    <form method="post" action="" class="formlogin">
+                <div class="loginboxchild">
+                    <h1>Student Booking App</h1>
+                    <h3>logg inn</h3>
+                    <div id="boxcenter">
+                        <form method="post" action="" class="formlogin">
 
-                        <div class="divinputs">
-                            <label for="email">e-post</label>
-                            <input type="email" name="email" required>
-                        </div>
+                            <div class="divinputs">
+                                <label for="email">e-post</label>
+                                <input type="email" name="email" required>
+                            </div>
+                            <br>
+                    </div>
+
+                    <div class="divinputs">
+                        <span class="label">passord</span>
+                        <input type="password" name="password" class="password" required>
                         <br>
+                    </div>
+                    <div class="divinputs">
+                        <input id="button" type="submit" value="Logg inn">
+
+                    </div>
+                    </form>
+                    <?php
+                    if (!empty($errormessage)) {
+                        echo $errormessage;
+                    }
+                    ?>
+                    <p>Ikke registrert ennå? <a href="./files/register.php">Registrer deg her</a></p>
                 </div>
 
-                <div class="divinputs">
-                    <span class="label">passord</span>
-                    <input type="password" name="password" class="password" required>
-                    <br>
-                </div>
-                <div class="divinputs">
-                    <input id="button" type="submit" value="Logg inn">
-
-                </div>
-                </form>
-                <?php
-                if (!empty($errormessage)) {
-                    echo $errormessage;
-                }
-                ?>
-                <p>Ikke registrert ennå? <a href="./files/register.php">Registrer deg her</a></p>
             </div>
-
-
 
         </div>
 

@@ -70,45 +70,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="body1">
         <div class="blur">
             <div class="loginbox">
-                <h2>Registrer deg</h2>
-                <div id="boxcenter">
-                    <form method="post" action="" accept-charset="UTF-8">
-                        <div class="divinputs">
+                <div class="loginboxchild">
+                    <h2>Registrer deg</h2>
+                    <div id="boxcenter">
+                        <form method="post" action="" accept-charset="UTF-8">
+                            <div class="divinputs">
 
-                            <label for="full_name">fullt navn</label>
-                            <input type="text" name="full_name"
-                                value="<?php echo isset($full_name) ? htmlspecialchars($full_name) : ''; ?>"><br>
-                        </div>
-                        <div class="divinputs">
+                                <label for="full_name">fullt navn</label>
+                                <input type="text" name="full_name"
+                                    value="<?php echo isset($full_name) ? htmlspecialchars($full_name) : ''; ?>"><br>
+                            </div>
+                            <div class="divinputs">
 
-                            <label for="email">e-post</label>
-                            <input type="text" name="email"
-                                value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>"><br><br>
-                        </div>
-                        <div class="divinputs">
+                                <label for="email">e-post</label>
+                                <input type="text" name="email"
+                                    value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>"><br><br>
+                            </div>
+                            <div id="divinputs2">
+                                <div>
+                                    <label>fagkode</label>
+                                </div><br><br>
+                                <div>
+                                    <div id="divinputs3">
+                                        <p> IS-115</p>
+                                        <input type="checkbox" id="checkbox" name="courses[]" value="2"> <br>
+                                    </div>
+                                    <div id="divinputs3">
+                                        <p> IS-116</p>
+                                        <input type="checkbox" id="checkbox" name="courses[]" value="1"> <br>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="divinputs">
 
-                            <label>fagkode</label><br>
-                            <input type="checkbox" name="courses[]" value="2"> IS-115<br>
-                            <input type="checkbox" name="courses[]" value="1"> IS-116<br>
-                        </div>
-                        <div class="divinputs">
 
+                                <label for="password">Passord</label>
+                                <input type="password" name="password"><br>
+                            </div>
+                            <div class="divinputs">
+                                <label for="password_repeat">Gjenta Passord</label>
+                                <input type="password" name="password_repeat"><br><br>
 
-
-                            <label for="password">Passord</label>
-                            <input type="password" name="password"><br>
-                        </div>
-                        <div class="divinputs">
-                            <label for="password_repeat">Gjenta Passord</label>
-                            <input type="password" name="password_repeat"><br><br>
-
-                        </div>
-                        <div class="divinputs">
-                            <input id="button" type="submit" value="Registrer">
-                        </div>
-                    </form>
+                            </div>
+                            <div class="divinputs">
+                                <input id="button" type="submit" value="Registrer">
+                            </div>
+                        </form>
+                    </div>
                 </div>
-
 
             </div>
         </div>
