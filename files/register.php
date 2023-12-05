@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Validate full name
     if (empty($full_name)) {
-        $errorMessages[] = "Fult Navn må fylles ut";
+        $errorMessages[] = "Fullt Navn må fylles ut";
     }
     // Validate email and check format
     if (empty($email)) {

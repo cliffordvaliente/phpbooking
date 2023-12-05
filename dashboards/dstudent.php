@@ -1,9 +1,8 @@
 <?php
-include_once "./files/functions.php";
+include_once __DIR__ . "/../files/functions.php";
 hidestatus();
 
-require_once('./databases/db.php');
-
+require_once __DIR__ . '/../databases/db.php';
 
 // Check if the user is logged in, redirect to login page if not.
 if (!isset($_SESSION['user_id'])) {
@@ -11,9 +10,9 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Check the user's role and redirect TAs to their dashboard - THIS MAY BE DEPRECATED HEADER ISNT CORRECT HELLO LOOK AT ME!!!
-if (isset($_SESSION['role']) && $_SESSION['role'] == 'TA') {
-    header("Location: dashboard_ta.php");
+// Check the user's role and redirect TAs to their dashboard
+if (isset($_SESSION['role']) && $_SESSION['role'] == 'Assistant') {
+    header("Location: dteacher.php");
     exit();
 }
 
@@ -37,23 +36,22 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <body>
     <h2>Velkommen til Bookingapplikasjonen,
-        <?php echo $user['firstname']; ?>!
+        <?php echo $user['full_name']; ?>!
     </h2>
 
     <p>Brukerinformasjon:</p>
     <ul>
         <li>Navn:
-            <?php echo $user['firstname'] . ' ' . $user['lastname']; ?>
+            <?php echo $user['full_name']; ?>
         </li>
         <li>Email:
             <?php echo $user['email']; ?>
         </li>
-        <li><a href="../files/update_profile.php">Endre profilinformasjon</a></li>
-        <li><a href="../files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
-
+        <li><a href="./files/update_profile.php">Endre profilinformasjon</a></li>
+        <li><a href="./files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
     </ul>
 
-    <p><a href="../files/logout.php">Logg ut</a></p>
+    <p><a href="./files/logout.php">Logg ut</a></p>
 </body>
 
 </html>

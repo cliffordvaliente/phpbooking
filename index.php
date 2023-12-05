@@ -18,7 +18,9 @@
 include_once "files/functions.php";
 hidestatus();
 
-
+if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+   echo 'You have been logged out.';
+}
 // 
 if (isset($_SESSION['user_id'])) {
    // User is logged in, include dashboard content
@@ -28,9 +30,7 @@ if (isset($_SESSION['user_id'])) {
    include('files/login.php');
 }
 
-if (isset($_GET['logout'])) {
-   echo 'Du er nå logget ut.';
-}
+
 
 if (isset($_GET['registered'])) {
    echo 'Profilen din er opprettet. Vennligst logg inn.';

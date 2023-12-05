@@ -1,9 +1,8 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+include_once __DIR__ . "/../files/functions.php";
+hidestatus();
 
-require_once('../databases/db.php');
+require_once __DIR__ . '/../databases/db.php';
 
 // Check if the user is logged in, redirect to login page if not.
 if (!isset($_SESSION['user_id'])) {
@@ -19,7 +18,7 @@ $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Fetch a list of TAs from the database
-$ta_stmt = $pdo->prepare("SELECT user_id, firstname, lastname FROM users WHERE role = 'TA'");
+$ta_stmt = $pdo->prepare("SELECT user_id, full_name FROM users WHERE role = 'Assistant'");
 $ta_stmt->execute();
 $ta_list = $ta_stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -29,13 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $selected_ta_id = $_POST["preferences"];
 
     // Fetch the selected TA's first and last name
-    $selected_ta_stmt = $pdo->prepare("SELECT firstname, lastname FROM users WHERE user_id = ?");
+    $selected_ta_stmt = $pdo->prepare("SELECT full_name FROM users WHERE user_id = ?");
     $selected_ta_stmt->execute([$selected_ta_id]);
     $selected_ta = $selected_ta_stmt->fetch(PDO::FETCH_ASSOC);
 
     // Update user preferences in the database with TA's first and last name
     $stmt = $pdo->prepare("UPDATE users SET preferences=? WHERE user_id=?");
-    $stmt->execute([$selected_ta['firstname'] . ' ' . $selected_ta['lastname'], $user_id]);
+    $stmt->execute([$selected_ta['full_name'], $user_id]);
 }
 ?>
 
@@ -58,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select name="preferences">
             <?php foreach ($ta_list as $ta): ?>
                 <option value="<?php echo $ta['user_id']; ?>" <?php echo ($user['preferences'] == $ta['user_id']) ? 'selected' : ''; ?>>
-                    <?php echo $ta['firstname'] . ' ' . $ta['lastname']; ?>
+                    <?php echo $ta['full_name']; ?>
                 </option>
             <?php endforeach; ?>
         </select><br>
@@ -66,6 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Lagre preferanser">
     </form>
 
-    <p><a href="dashboards/dstudent.php">Tilbake til dashbord</a></p>
+    <p><a href="../dashboards/dstudent.php">Tilbake til dashbord</a></p>
 </body>
 </html>

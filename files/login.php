@@ -36,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //! SET SESSION VARIABLES WHEN SUCCESSFUL AND REDIRECT TO DASHBOARD
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['role'] = $user['role'];
-            //header('Location: dashboard.inc.php');
             include('index.php');
             exit();
         } else {
