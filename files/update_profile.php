@@ -17,11 +17,13 @@ $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$error = array();
+$errormessage = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = trim($_POST["full_name"]);
     $email = trim($_POST["email"]);
+    $new_password = trim($_POST["new_password"]);
+    $confirm_password = trim($_POST["confirm_password"]);
 
     if (empty($full_name)) {
         $error[] = "Navn må fylles ut";
@@ -29,19 +31,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($email)) {
         $error[] = "Email må fylles ut";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error[] = "Emailformatet er ugyldig";
+        $error[] = "Ugyldig emailformat";
     }
-
+    if (empty($new_password)) {
+        $error[] = "Passordfeltet må fylles ut";
+    } elseif (strlen($new_password) < 8 || !preg_match('/[A-ZÆØÅ]/', $new_password) || !preg_match('/[0-9]/', $new_password)) {
+        $error[] = "Passordet må være minst 8 tegn langt, inneholde minst én stor bokstav og ett tall. Vi anbefaler at du har noen små bokstaver også.";
+    }
+    if ($new_password !== $confirm_password) {
+        $error[] = "Pass på at du gjentar passordet likt";
+    }
     if (empty($error)) {
         // Update user information in the database
-        $stmt = $pdo->prepare("UPDATE users SET full_name=?, email=? WHERE user_id=?");
-        $stmt->execute([$full_name, $email, $user_id]);
-        header("Location: ../index.php"); // Sends user back to dashboard when update is submitted
+        $updateFields = "full_name=?, email=?";
+        $updateValues = array($full_name, $email);
+
+        // Check if new password is provided and update the password field
+        if (!empty($new_password)) {
+            $updateFields .= ", password=?";
+            $updateValues[] = password_hash($new_password, PASSWORD_DEFAULT);
+        }
+
+        $stmt = $pdo->prepare("UPDATE users SET $updateFields WHERE user_id=?");
+        $updateValues[] = $user_id;
+
+        $stmt->execute($updateValues);
+
+        header("Location: ../index.php");
         exit();
-        // Fetch updated user data
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = ?");
-        $stmt->execute([$user_id]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
     } else {
         // Display errors if any
         echo "Feil oppstod, vennligst rett på følgende:<br>";
@@ -67,7 +84,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="full_name" value="<?php echo isset($user['full_name']) ? $user['full_name'] : ''; ?>"><br>
 
         <label for="email">Email:</label>
-        <input type="text" name="email" value="<?php echo isset($user['email']) ? $user['email'] : ''; ?>"><br><br>
+        <input type="text" name="email" value="<?php echo isset($user['email']) ? $user['email'] : ''; ?>"><br>
+
+        <label for="new_password">Nytt passord:</label>
+        <input type="password" name="new_password"><br>
+
+        <label for="confirm_password">Bekreft passord:</label>
+        <input type="password" name="confirm_password"><br><br>
 
         <input type="submit" value="Oppdater profil">
 
