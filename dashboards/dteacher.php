@@ -52,7 +52,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                         <a href="./index.php">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./bookings/bstudent.php">Bookings</a>
+                        <a href="./bookings/bteacher.php">Bookings</a>
                     </li>
                     <li class="nav-item">
                         <a href="./files/logout.php">Logg ut</a>
@@ -66,7 +66,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <div>
 
-        <h2>Velkommen til Bookingapplikasjonen,
+        <h2>Velkommen til hjelpelærersiden av Bookingapplikasjonen,
             <?php echo $user['full_name']; ?>!
         </h2>
         <p>Ditt Profil informasjon</p>
@@ -78,11 +78,10 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <?php echo $user['email']; ?>
             </li>
             <li><a href="./files/update_profile.php">Trykk her for å endre profilinformasjon</a></li>
-            <li><a href="./files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
         </ul>
 
     </div>
-    <div id='calendar'></div>
+    <div id='calendar teacher'></div>
 
     <script src="./files/script.js"></script> <!-- Custom JavaScript -->
 
