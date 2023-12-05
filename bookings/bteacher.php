@@ -4,12 +4,13 @@ hidestatus();
 
 // Require database connection
 require_once('../databases/db.php');
-/*
+
 // Check if the user is logged in and a teaching assistant, redirect to login page if not.
-    header("Location: ../index.php"); // CHECK IF THIS REDIRECT IS CORRECT ##################################################
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Assistant') {
+    header("Location: ../index.php");
     exit();
 }
-*/
+
 // Booking form handling
 $errormessage = array();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
