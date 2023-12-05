@@ -9,7 +9,7 @@ require_once('./databases/db.php');
 
 //! IF USER LOGGED IN -> REDIRECT TO DASHBOARD
 if (isset($_SESSION['user_id'])) {
-    header("Location: ../dashboards/dstudent.php");
+    header("Location: ../index.php");
     exit();
 }
 
