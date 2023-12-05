@@ -37,10 +37,13 @@ $availableSessions = $sessionStmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Tilgjengelige hjelpelærerøkter</title>
+    <link rel="stylesheet" href="../stylesheet/bstudent.css">
 </head>
+
 <body>
     <h2>Tilgjengelige økter</h2>
     <table border="1">
@@ -54,11 +57,21 @@ $availableSessions = $sessionStmt->fetchAll(PDO::FETCH_ASSOC);
         </tr>
         <?php foreach ($availableSessions as $session): ?>
             <tr>
-                <td><?php echo $session['assistant_name']; ?></td>
-                <td><?php echo $session['length']; ?></td>
-                <td><?php echo $session['session_theme']; ?></td>
-                <td><?php echo $session['BookingStatus']; ?></td>
-                <td><?php echo $session['bookingdate']; ?></td>
+                <td>
+                    <?php echo $session['assistant_name']; ?>
+                </td>
+                <td>
+                    <?php echo $session['length']; ?>
+                </td>
+                <td>
+                    <?php echo $session['session_theme']; ?>
+                </td>
+                <td>
+                    <?php echo $session['BookingStatus']; ?>
+                </td>
+                <td>
+                    <?php echo $session['bookingdate']; ?>
+                </td>
                 <td>
                     <form action="book_session.php" method="post">
                         <input type="hidden" name="session_id" value="<?php echo $session['session_id']; ?>">
@@ -70,4 +83,5 @@ $availableSessions = $sessionStmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
     <p><a href="../index.php">Tilbake til dashboard</a></p>
 </body>
+
 </html>

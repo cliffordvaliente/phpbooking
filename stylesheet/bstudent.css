@@ -1,0 +1,84 @@
+/* Reset some default styles */
+html,
+body,
+h2,
+table,
+th,
+td,
+tr,
+form,
+input,
+p,
+a {
+  margin: 0;
+  padding: 0;
+}
+
+/* Apply a background color to the body */
+body {
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+/* Style the heading */
+h2 {
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+/* Style the table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Style the table header (th) */
+th {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Style the table rows (tr) */
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style the "Booke?" column */
+td:last-child {
+  text-align: center;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Style the back to dashboard link */
+p a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+p a:hover {
+  text-decoration: underline;
+}

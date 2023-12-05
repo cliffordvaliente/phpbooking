@@ -23,32 +23,26 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheet/dstudent.css">
     <title>Dashboard Student</title>
 </head>
 
 <body>
     <!-- NAVIGATION BAR ------------------------------------------------------------------>
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div class="container-fluid">
+    <nav>
+        <ul>
+            <li>
+                <a href="./index.php">Dashboard</a>
+            </li>
+            <li>
+                <a href="./bookings/bstudent.php">Bookings</a>
+            </li>
+            <li>
+                <a href="./files/logout.php">Logg ut</a>
+            </li>
+        </ul>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarColor01">
-                <ul class="navbar-nav me-auto ">
-                    <li class="nav-item">
-                        <a href="./index.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./bookings/bstudent.php">Bookings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./files/logout.php">Logg ut</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
     </nav>
     <!-- NAVIGATION BAR END ----------------------------------------------------------------->
 
@@ -66,10 +60,13 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
                 <?php echo $user['email']; ?>
             </li>
             <li><a href="./files/update_profile.php">Endre profilinformasjon</a></li>
-            <li><a href="./files/set_preferences.php">Sett foretrukken Lærerassistent</a></li>
+
         </ul>
 
-    <div><?php include('./bookings/display_bstudent.php'); ?></div>
+        <div>
+            <?php include('./bookings/display_bstudent.php'); ?>
+        </div>
     </div>
 </body>
+
 </html>
