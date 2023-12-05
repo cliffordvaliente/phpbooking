@@ -1,14 +1,9 @@
 <?php
 include_once __DIR__ . "/../files/functions.php";
 hidestatus();
+redirectForbidden();
 
 require_once __DIR__ . '/../databases/db.php';
-
-// Check if the user is logged in, redirect to login page if not.
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
-}
 
 $user_id = $_SESSION['user_id'];
 
@@ -35,6 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Update user preferences in the database with TA's first and last name
     $stmt = $pdo->prepare("UPDATE users SET preferences=? WHERE user_id=?");
     $stmt->execute([$selected_ta['full_name'], $user_id]);
+    header("Location: ../index.php"); // Sends user back to dashboard when update is submitted
 }
 ?>
 
@@ -65,6 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Lagre preferanser">
     </form>
 
-    <p><a href="../dashboards/dstudent.php">Tilbake til dashbord</a></p>
+    <p><a href="../index.php">Tilbake til dashbord</a></p>
 </body>
 </html>

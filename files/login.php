@@ -36,12 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //! SET SESSION VARIABLES WHEN SUCCESSFUL AND REDIRECT TO DASHBOARD
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['role'] = $user['role'];
-<<<<<<< Updated upstream
-            include('index.php');
-=======
 
             include('./index.php');
->>>>>>> Stashed changes
             exit();
         } else {
             //! GET ERROR MESSAGE IF WRONG CREDENTIALS

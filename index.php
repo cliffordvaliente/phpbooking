@@ -19,21 +19,12 @@
 include_once "files/functions.php";
 hidestatus();
 
-if (isset($_GET['logout']) && $_GET['logout'] == 1) {
-   echo 'You have been logged out.';
-}
-// 
+//! Checks if user is logged in
 if (isset($_SESSION['user_id'])) {
    // User is logged in, include dashboard content
    include('./dashboards/dstudent.php');
 } else {
    // User is not logged in, include login content
    include('files/login.php');
-}
-
-
-
-if (isset($_GET['registered'])) {
-   echo 'Profilen din er opprettet. Vennligst logg inn.';
 }
 ?>

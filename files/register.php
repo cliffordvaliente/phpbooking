@@ -5,88 +5,77 @@ hidestatus();
 
 // Require database connection
 require_once('../databases/db.php');
-$errorMessages = []; // Initialize an array to hold error messages
 
-// Check if the form has been submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$errormessage = array();
 
-    // Collect and trim form data
+// Below is the user registration. It checks against what is wrong and not against what is correct, by using $error.
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $full_name = trim($_POST["full_name"]);
     $email = trim($_POST["email"]);
     $password = trim($_POST["password"]);
     $password_repeat = trim($_POST["password_repeat"]);
-    // Collect selected courses or initialize as empty array if none selected
     $selectedCourses = isset($_POST["courses"]) ? $_POST["courses"] : [];
+    $courses = implode(', ', $selectedCourses);
 
-    // Validate full name
     if (empty($full_name)) {
-        $errorMessages[] = "Fullt Navn må fylles ut";
+        $error[] = "Fullt navn må fylles ut";
     }
-    // Validate email and check format
     if (empty($email)) {
-        $errorMessages[] = "Email må fylles ut";
+        $error[] = "Email må fylles ut";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errorMessages[] = "Emailformatet er ugyldig";
+        $error[] = "Emailformatet er ugyldig";
     }
-
-    // Validate course selection
     if (empty($selectedCourses)) {
-        $errorMessages[] = "Husk å velge faget eller fagene dine!";
+        $error[] = "Husk å velge faget eller fagene dine!";
     }
-    // Validate password
     if (empty($password)) {
-        $errorMessages[] = "Passordfeltet må fylles ut";
+        $error[] = "Passordfeltet må fylles ut";
     } elseif (strlen($password) < 8 || !preg_match('/[A-ZÆØÅ]/', $password) || !preg_match('/[0-9]/', $password)) {
-        $errorMessages[] = "Passordet må være minst 8 tegn langt, inneholde minst én stor bokstav og ett tall. Vi anbefaler at du har noen små bokstaver også.";
+        $error[] = "Passordet må være minst 8 tegn langt, inneholde minst én stor bokstav og ett tall. Vi anbefaler at du har noen små bokstaver også.";
     }
-    // Check if password and repeat password match
     if ($password !== $password_repeat) {
-        $errorMessages[] = "Pass på at du gjentar passordet likt";
+        $error[] = "Pass på at du gjentar passordet likt";
     }
-
-    // If there are no errors, proceed to include the insert script and redirect
-    if (empty($errorMessages)) {
+    if (empty($error)) {
         include('../files/insert.php');
-        header("Location: ../index.php?registered=1");
+        header("Location: ../register_redirect.php"); // Redundant line, insert.php redirects
         exit();
     }
-}
 
-// Display any error messages if they exist
-if (!empty($errorMessages)) {
-    foreach ($errorMessages as $message) {
-        echo "<p>Error: $message</p>";
+    // Here, each error is stored and then displayed on screen as a separate line.
+    else {
+        echo "Feil oppstod, vennligst rett på følgende:<br>";
+        foreach ($error as $errormessage) {
+            echo "-$errormessage<br>";
+        };
     }
-}
+ }
+
 ?>
 
 <!DOCTYPE html>
 <html lang="no">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrer en bruker</title>
 </head>
-
 <body>
-
-    <h3>Brukerregistrering</h3>
-    <form method="POST" action="insert.php" accept-charset="UTF-8">
-        <label for="firstname">Fornavn:</label>
-        <input type="text" name="full_name"
-            value="<?php echo isset($full_name) ? htmlspecialchars($full_name) : ''; ?>"><br>
+    <!-- HTML-form for user registration -->
+    <h2>Brukerregistrering</h2>
+    <form method="post" action="" accept-charset="UTF-8">
+        <label for="full_name">Fullt navn:</label>
+        <input type="text" name="full_name" value="<?php echo isset($full_name) ? htmlspecialchars($full_name) : ''; ?>"><br>
 
         <label for="email">Email:</label>
         <input type="text" name="email" value="<?php echo isset($email) ? htmlspecialchars($email) : ''; ?>"><br><br>
-
-        <label>Fagkode</label><br>
+    
+        <label>Fagkode:</label><br>
         <input type="checkbox" name="courses[]" value="2"> IS-115<br>
         <input type="checkbox" name="courses[]" value="1"> IS-116<br>
 
-
-        <p>Passordet må være minst 8 tegn langt, inneholde <b>minst</b> én stor bokstav og ett tall. Vi anbefaler at du
-            har noen små bokstaver også.</p>
+        <p>Passordet må være minst 8 tegn langt, inneholde <b>minst</b> én stor bokstav og ett tall. Vi anbefaler at du har noen små bokstaver også.</p>
 
         <label for="password">Passord:</label>
         <input type="password" name="password"><br>
@@ -98,5 +87,4 @@ if (!empty($errorMessages)) {
     </form>
 
 </body>
-
 </html>

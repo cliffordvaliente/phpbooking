@@ -22,7 +22,7 @@ if (ini_get("session.use_cookies")) {
 // Finally, destroy the session
 session_destroy();
 
-// Redirect to login page or home page after logout
-header("Location: login.php"); // Modify with the location you want to redirect to
+// Redirect to a redirect, done to avoid some bugs
+header("Location: logout_redirect.php");
 exit();
 ?>

@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $pdo->commit();
-        header("Location: ../index.php?registered=1");
+        header("Location: register_redirect.php");
         exit();
     } catch (Exception $e) {
         $pdo->rollBack();

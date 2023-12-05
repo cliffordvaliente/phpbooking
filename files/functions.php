@@ -9,7 +9,15 @@ function hidestatus()
       session_start();
    }
 }
-//! ------------------------------------------------
+
+//! REDIRECTS TO FRONT PAGE IF NOT LOGGED IN
+function redirectForbidden()
+{
+   if (!isset($_SESSION['user_id'])) {
+      header("Location: index.php");
+      exit();
+  }
+}
 
 //! 
 

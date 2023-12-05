@@ -1,14 +1,9 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
- }
- require_once __DIR__ . '/../databases/db.php';
+include_once __DIR__ . "/../files/functions.php";
+hidestatus();
+redirectForbidden();
 
-// Check if the user is logged in, redirect to login page if not.
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
-}
+require_once __DIR__ . '/../databases/db.php';
 
 $user_id = $_SESSION['user_id'];
 
@@ -20,21 +15,11 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 $error = array();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstname = trim($_POST["firstname"]);
-    $lastname = trim($_POST["lastname"]);
-    $cellphone = trim($_POST["cellphone"]);
+    $full_name = trim($_POST["full_name"]);
     $email = trim($_POST["email"]);
 
-    if (empty($firstname)) {
-        $error[] = "Fornavn må fylles ut";
-    }
-    if (empty($lastname)) {
-        $error[] = "Etternavn må fylles ut";
-    }
-    if (empty($cellphone)) {
-        $error[] = "Mobilnummer må fylles ut";
-    } elseif (!preg_match('/^[49]/', $cellphone) || !is_numeric($cellphone) || strlen($cellphone) !== 8) {
-        $error[] = "Mobilnummer må være et 8-sifret gyldig norsk mobilnummer.";
+    if (empty($full_name)) {
+        $error[] = "Navn må fylles ut";
     }
     if (empty($email)) {
         $error[] = "Email må fylles ut";
@@ -44,9 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($error)) {
         // Update user information in the database
-        $stmt = $pdo->prepare("UPDATE users SET firstname=?, lastname=?, cell=?, email=? WHERE user_id=?");
-        $stmt->execute([$firstname, $lastname, $cellphone, $email, $user_id]);
-        header("Location: dashboards/dstudent.php"); // Sends user back when update is submitted
+        $stmt = $pdo->prepare("UPDATE users SET full_name=?, email=? WHERE user_id=?");
+        $stmt->execute([$full_name, $email, $user_id]);
+        header("Location: ../index.php"); // Sends user back to dashboard when update is submitted
         exit();
         // Fetch updated user data
         $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = ?");
@@ -73,21 +58,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- HTML-form for updating user profile -->
     <h2>Oppdater profil</h2>
     <form method="post" action="" accept-charset="UTF-8">
-        <label for="firstname">Fornavn:</label>
-        <input type="text" name="firstname" value="<?php echo isset($user['firstname']) ? $user['firstname'] : ''; ?>"><br>
-
-        <label for="lastname">Etternavn:</label>
-        <input type="text" name="lastname" value="<?php echo isset($user['lastname']) ? $user['lastname'] : ''; ?>"><br>
-
-        <label for="cellphone">Mobilnummer:</label>
-        <input type="text" name="cellphone" value="<?php echo isset($user['cell']) ? $user['cell'] : ''; ?>"><br>
+        <label for="full_name">Fullt navn:</label>
+        <input type="text" name="full_name" value="<?php echo isset($user['full_name']) ? $user['full_name'] : ''; ?>"><br>
 
         <label for="email">Email:</label>
         <input type="text" name="email" value="<?php echo isset($user['email']) ? $user['email'] : ''; ?>"><br><br>
 
         <input type="submit" value="Oppdater profil">
 
-        <p><a href="../dashboards/dstudent.php">Tilbake til dashbord</a></p>
+        <p><a href="../index.php">Tilbake til dashbord</a></p>
     </form>
 </body>
 </html>
