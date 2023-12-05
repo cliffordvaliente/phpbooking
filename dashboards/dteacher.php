@@ -81,7 +81,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
         </ul>
 
     </div>
-    <div id='calendar teacher'></div>
+    <div id='calendar'></div>
 
     <script src="./files/script.js"></script> <!-- Custom JavaScript -->
 
