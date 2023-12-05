@@ -10,12 +10,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Check the user's role and redirect TAs to their dashboard
-if (isset($_SESSION['role']) && $_SESSION['role'] == 'Assistant') {
-    header("Location: dteacher.php");
-    exit();
-}
-
 // Fetch user data from the database based on the user_id stored in the session.
 $user_id = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE user_id = ?");

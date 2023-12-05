@@ -19,10 +19,24 @@
 include_once "files/functions.php";
 hidestatus();
 
-//! Checks if user is logged in
 if (isset($_SESSION['user_id'])) {
-   // User is logged in, include dashboard content
-   include('./dashboards/dstudent.php');
+   // User is logged in
+   if (isset($_SESSION['role'])) {
+       // Check user role
+       if ($_SESSION['role'] == 'Student') {
+           // User is a student, include student dashboard
+           include('./dashboards/dstudent.php');
+       } elseif ($_SESSION['role'] == 'Assistant') {
+           // User is an assistant, include assistant dashboard
+           include("./dashboards/dteacher.php");
+       } else {
+           // Unknown role, handle accordingly
+           include('files/login.php');
+       }
+   } else {
+       // Role is not set, handle accordingly
+       include('files/login.php');
+   }
 } else {
    // User is not logged in, include login content
    include('files/login.php');
