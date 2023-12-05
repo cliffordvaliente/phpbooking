@@ -66,6 +66,8 @@ $courseQuery = "SELECT c.course_id, c.course_name FROM courses c
 $courseStmt = $pdo->prepare($courseQuery);
 $courseStmt->execute([$assistant_id]);
 $availableCourses = $courseStmt->fetchAll(PDO::FETCH_ASSOC);
+
+include('display_bteacher.php');
 ?>
 
 <!DOCTYPE html>
