@@ -78,6 +78,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
+<<<<<<< HEAD
+=======
+// Fetch the courses associated with the logged-in TA
+$assistant_id = $_SESSION['user_id'];
+$courseQuery = "SELECT c.course_id, c.course_name FROM courses c
+                INNER JOIN student_courses sc ON c.course_id = sc.course_id
+                WHERE sc.student_id = ?";
+$courseStmt = $pdo->prepare($courseQuery);
+$courseStmt->execute([$assistant_id]);
+$availableCourses = $courseStmt->fetchAll(PDO::FETCH_ASSOC);
+
+include('display_bteacher.php');
+>>>>>>> 1886fa261b04d2a498db1b23622549367412406a
 ?>
 
 <!DOCTYPE html>
