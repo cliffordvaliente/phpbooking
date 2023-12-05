@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (Exception $e) {
         $pdo->rollBack();
         // Handle and log error appropriately
-        exit('An error occurred: ' . $e->getMessage());
+        exit('Her gikk noe galt:' . $e->getMessage());
     }
 }
 ?>

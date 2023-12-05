@@ -7,6 +7,7 @@
 </head>
 <body>
 <p><a href="./files/logout.php">Logg ut</a></p>
+<p><a href="./bookings/bteacher.php">Bookinger</a></p>
 
 </body>
 </html>
