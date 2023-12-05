@@ -1,11 +1,15 @@
 <?php
-
-//! SESSION START AND HIDE STATUS
+ //! SESSION START AND HIDE STATUS
 include_once '../files/functions.php';
 hidestatus();
-
 //! DB STUFF 
 require_once('../databases/db.php');
+
+/*
+ * This is the Teaching Assistant booking page. Here the TA can set up timeslots for their availability.
+ * The code itself is an html form last, and the php which connects the form to the database to make sure
+ * all the right tables and columns are affected.
+*/
 
 //! CHECK IF USER LOGGED IN AS ASSISTANT ELSE REDIRECT TO LOGIN
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Assistant') {

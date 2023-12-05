@@ -19,6 +19,14 @@ function redirectForbidden()
   }
 }
 
-//! 
+//! DELETES EXPIRED BOOKINGS
+function cleanupExpiredBookings($pdo) {
+   // Get the current date and time
+   $currentDateTime = date('Y-m-d H:i:s');
 
+   // Delete expired bookings
+   $deleteQuery = "DELETE FROM guidance_sessions WHERE BookingStatus = 'Confirmed' AND bookingdate < ?";
+   $stmt = $pdo->prepare($deleteQuery);
+   $stmt->execute([$currentDateTime]);
+}
 ?>

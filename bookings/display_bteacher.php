@@ -1,4 +1,6 @@
 <?php
+include_once './files/functions.php';
+cleanupExpiredBookings($pdo);
 require_once('./databases/db.php');
 
 // Fetch TA bookings

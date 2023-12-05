@@ -5,6 +5,12 @@ hidestatus();
 // Require database connection
 require_once('../databases/db.php');
 
+/*
+ * This is the Student booking page. Here the student can view free timeslots and book them.
+ * The code itself is an html form last, and the php which connects the form to the database to make sure
+ * all the right tables and columns are affected.
+*/
+
 // Check if the user is logged in and a student, redirect to login page if not.
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'Student') {
     header("Location: ../index.php");

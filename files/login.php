@@ -1,5 +1,7 @@
 <?php
-
+/* LOGIN.PHP
+ * This is the Login code. It works as an include with index.php
+*/
 //! INCLUDE PHP FILES HERE 
 include_once 'functions.php';
 hidestatus();

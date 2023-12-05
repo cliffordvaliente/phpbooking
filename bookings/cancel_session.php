@@ -1,6 +1,6 @@
 <?php
 require_once('../databases/db.php');
-
+/* This code lets TAs delete their booking, removing it from availability. */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $session_id = $_POST['session_id'];
 
