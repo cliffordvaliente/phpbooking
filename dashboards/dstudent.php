@@ -10,8 +10,13 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+<<<<<<< Updated upstream
 // Check the user's role and redirect TAs to their dashboard
 if (isset($_SESSION['role']) && $_SESSION['role'] == 'Assistant') {
+=======
+// Check the user's role and redirect TAs to their dashboard - THIS MAY BE DEPRECATED HEADER ISNT CORRECT HELLO LOOK AT ME!!!
+if (isset($_SESSION['role']) && $_SESSION['role'] == 'TA') {
+>>>>>>> Stashed changes
     header("Location: dteacher.php");
     exit();
 }

@@ -5,7 +5,7 @@ include_once 'functions.php';
 hidestatus();
 
 //! DB STUFF 
-require_once('databases/db.php');
+require_once('./databases/db.php');
 
 //! IF USER LOGGED IN -> REDIRECT TO DASHBOARD
 if (isset($_SESSION['user_id'])) {
@@ -36,7 +36,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //! SET SESSION VARIABLES WHEN SUCCESSFUL AND REDIRECT TO DASHBOARD
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['role'] = $user['role'];
+<<<<<<< Updated upstream
             include('index.php');
+=======
+
+            include('./index.php');
+>>>>>>> Stashed changes
             exit();
         } else {
             //! GET ERROR MESSAGE IF WRONG CREDENTIALS
@@ -57,32 +62,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <title>Logg inn</title>
 </head>
 
 <body>
-    <h1>BOOKING APPLIKASJON</h1>
-    <h2>Logg inn</h2>
-    <form method="post" action="">
-        <label for="email">E-post:</label>
-        <input type="email" name="email" required>
+    <div class="body1">
+        <div class="loginbox">
+            <h1>Student Booking App</h1>
+            <h2>Logg inn</h2>
+            <form method="post" action="">
+                <label for="email">E-post:</label>
+                <input type="email" name="email" required>
 
-        <br>
+                <br>
 
-        <label for="password">Passord:</label>
-        <input type="password" name="password" required>
+                <label for="password">Passord:</label>
+                <input type="password" name="password" required>
 
-        <br>
+                <br>
 
-        <input type="submit" value="Logg inn">
-    </form>
+                <input type="submit" value="Logg inn">
+            </form>
 
-    <?php
-    if (!empty($errormessage)) {
-        echo "<p>$errormessage</p>";
-    }
-    ?>
-    <p>Ikke registrert ennå? <a href="files/register.php">Registrer deg her</a></p>
+            <?php
+            if (!empty($errormessage)) {
+                echo "<p>$errormessage</p>";
+            }
+            ?>
+            <p>Ikke registrert ennå? <a href="./files/register.php">Registrer deg her</a></p>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -4,6 +4,7 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="stylesheets/style.css">
    <title>Index File</title>
 </head>
 
@@ -24,7 +25,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 1) {
 // 
 if (isset($_SESSION['user_id'])) {
    // User is logged in, include dashboard content
-   include('dashboards/dstudent.php');
+   include('./dashboards/dstudent.php');
 } else {
    // User is not logged in, include login content
    include('files/login.php');

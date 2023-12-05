@@ -21,9 +21,6 @@ CREATE TABLE
   );
 
 
-/* 
- DROPPED 
- */
 CREATE TABLE
   Courses (
     course_id INT AUTO_INCREMENT PRIMARY KEY,
